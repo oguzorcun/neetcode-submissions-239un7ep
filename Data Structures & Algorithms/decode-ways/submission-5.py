@@ -1,0 +1,23 @@
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        
+        def decodes(code: str) -> bool:
+            return code[0] != '0' and 0 < int(code) < 27
+
+        memo = [-1] * len(s)
+
+        def rec(i) -> int:
+            if i == -1: return 1
+            elif i == 0: return 1 if decodes(s[0]) else 0
+            elif memo[i] != -1: return memo[i]
+
+            single = double = 0
+            if decodes(s[i]): single = rec(i-1)
+            if decodes(s[i-1:i+1]): double = rec(i-2)
+
+            memo[i] = single + double
+            return memo[i]
+
+        return rec(len(s) - 1)        
+            
+
