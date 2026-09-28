@@ -1,0 +1,30 @@
+class Solution {
+    public int climbStairs(int n) {
+
+        int prev = 1;
+        int curr = 1;
+
+        for (int i = 1; i < n; i++) {
+            int tmp = curr;
+            curr = prev + curr;
+            prev = tmp;
+        }
+
+        return curr;
+
+        
+        
+        // var ways = new int[n + 1];
+
+        // ways[0] = 1;
+        // ways[1] = 2;
+
+        // if (n < 2) return ways[n - 1];
+
+        // for (int i = 2; i < n; i++) {
+        //     ways[i] = ways[i - 1] + ways[i - 2];
+        // }
+
+        // return ways[n - 1];
+    }
+}
